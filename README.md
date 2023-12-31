@@ -1,53 +1,21 @@
-# Mancala Game
+# Mancala Game With AI
 
-This repository contains a Python implementation of the Mancala board game, along with several player strategies to play against each other. Mancala is a traditional game that involves capturing stones in pits on the board.
+## What is Mancala?
 
-### How to Run
+Mancala is a game involving two players taking turns collecting the most pieces, usually stones, in their "stores" at the opposite ends of the board. The physical Mancala board has two six-pocket rows with four pieces in each, also known as stones, and two stores, which don't have anything in them.
 
-To play the game, execute the `main.py` script from the command line. You can specify a trace of moves as a command-line argument. The players are defined in the script and can be modified based on your preferences.
+![alt text](https://media.springernature.com/lw685/springer-static/image/chp%3A10.1007%2F978-3-031-34017-8_1/MediaObjects/541501_1_En_1_Fig1_HTML.png)
 
-```bash
-python main.py [trace]
-```
+### Rules
 
-trace: An optional argument representing a sequence of moves (e.g., "34521") to start the game.
+1. In each turn of the game, a player picks up all the pieces in a pit and moves counter-clockwise, placing one stone in each pocket until the stones are exhausted. If the player passes their store during this process, they also deposit one stone in it. However, the player skips over the opponent's store.
+2. The last piece a player places lands in their store, they get an extra turn.
+4. If the last piece a player places is in an empty space on their side, and the opponent has stones in the pit exactly opposite to this empty space, the player collects all the stones in the opponent's opposite pit, in addition to their last placed stone.
+5. The game concludes when all the stones on one side of the board are depleted. At this point, the remaining player gathers all the stones on their side and places them in their store.
+6. Finally, the player with the most stones is a winner.
 
-### Game Rules
+Usually, this game requires two players, but we can also play with one player and one AI. The game includes various AI strategies like minimax, dynamic programming, base player, and alpha-beta pruning. The many AI options add complexity to the gameplay, offering different levels of challenge for players, depending on the layers you allow it to have.
 
-The game starts with a board configuration where each player has six pits and a store (pot). Players take turns choosing a pit on their side, and the stones in that pit are sown counterclockwise into the following pits. If the last stone is dropped into the player's pot, they get an extra turn. If the last stone lands in an empty pit on the player's side, and the opposite pit has stones, the player captures both the last stone and the stones in the opposite pit, placing them in their pot.
-
-The game ends when a player's side is empty, and the remaining stones on the opponent's side are captured. The player with the most stones in their pot at the end wins.
-
-### Players
-
-Several player strategies are implemented:
-
-manual: A human player that prompts the user for input.
-random: A player that selects a random valid move.
-PlayerMM: A player using the minimax algorithm with a specified search depth.
-PlayerAB: A player using the alpha-beta pruning algorithm with a specified search depth.
-PlayerDP: A player that caches and reuses heuristic scores to optimize performance.
-TestPlayer: A customizable player with a user-defined heuristic.
-Example
-python
-Copy code
-
-### Create players
-
-p1 = PlayerAB(1)
-p2 = PlayerMM(2)
-
-### Initialize the game with an optional trace
-
-g = Game(trace, p1, p2)
-
-### Run the game
-
-g.runGame()
-Note
-This implementation uses Python 3.
-Make sure to install any required dependencies using pip install [package]. The board printed to the console (Shown below) is colored using the termcolor package.
-Feel free to explore and modify the code to experiment with different player strategies or game configurations. Enjoy playing Mancala!
 
 ```bash
 Player 1 is thinking
