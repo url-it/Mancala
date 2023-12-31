@@ -1,7 +1,7 @@
 from board import Board
 import math
 
-class mainPlayer:
+class basePlayer:
     def __init__(self, max_depth):
         self.max_depth = max_depth
 
@@ -38,9 +38,9 @@ class mainPlayer:
         return best_move
 
 
-class manual(mainPlayer):
+class manual(basePlayer):
     def __init__(self, max_depth=None):
-        mainPlayer.__init__(self, max_depth)
+        basePlayer.__init__(self, max_depth)
 
     def findMove(self, trace):
         board = Board(trace)
@@ -67,9 +67,9 @@ class manual(mainPlayer):
                 return pit
 
 
-class random(mainPlayer):
+class random(basePlayer):
     def __init__(self, max_depth=None):
-        mainPlayer.__init__(self, max_depth)
+        basePlayer.__init__(self, max_depth)
         self.random = random.Random(13487951347859)
 
     def findMove(self, trace):
@@ -77,7 +77,7 @@ class random(mainPlayer):
         options = list(board.getAllValidMoves())
         return self.random.choice(options)
 
-class PlayerMM(mainPlayer):
+class playerMM(basePlayer):
     def minimax(self, board, depth):
         if depth == 0 or board.game_over:
             return None, self.heuristic(board)
@@ -110,7 +110,7 @@ class PlayerMM(mainPlayer):
         return move
 
 
-class PlayerAB(mainPlayer):
+class playerAB(basePlayer):
     def alphaBeta(self, board, depth, alpha, beta):
         alpha = -math.inf
         beta = math.inf
@@ -153,7 +153,7 @@ class PlayerAB(mainPlayer):
         return move
 
 
-class PlayerDP(PlayerAB):
+class playerDP(PlayerAB):
     def __init__(self, max_depth):
         PlayerAB.__init__(self, max_depth)
         self.resolved = {}
@@ -167,7 +167,7 @@ class PlayerDP(PlayerAB):
 
 # This will inherit findMove from above, but will override the heuristic function with
 # a new one; it can swap out the type of player by changing X in "class TestPlayer(X):"
-class TestPlayer(mainPlayer):
+class testPlayer(basePlayer):
     def heuristic(self):
         score = 0
         if board.game_over:
