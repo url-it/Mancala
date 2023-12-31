@@ -1,1 +1,1 @@
-Mancala AI Game
+# Mancala AI Game
