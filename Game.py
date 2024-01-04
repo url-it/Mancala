@@ -42,8 +42,8 @@ if __name__ == "__main__":
     #  random() - random player
     #  TestPlayer() - player that always chooses the first valid move
 
-    p1 = PlayerAB(1)
-    p2 = PlayerMM(2)
+    p1 = playerAB(5)
+    p2 = manual()
     g = Game(trace, p1, p2)
 
     g.runGame()

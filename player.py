@@ -153,7 +153,7 @@ class playerAB(basePlayer):
         return move
 
 
-class playerDP(PlayerAB):
+class playerDP(playerAB):
     def __init__(self, max_depth):
         PlayerAB.__init__(self, max_depth)
         self.resolved = {}
